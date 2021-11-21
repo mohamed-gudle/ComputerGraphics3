@@ -13,7 +13,7 @@ void display() {
 
 glClearColor(255, 255, 255, 255);
 glClear(GL_COLOR_BUFFER_BIT);
-glColor3f(1, 0, 0);
+glColor3f(0, 0, 0);
 glOrtho(-3.0, 3.0, -3.0, 3.0, -1.0, 1.0);
 
 // Drawing is done by specifying a sequence of vertices. The way these
@@ -114,6 +114,38 @@ for (int i = 0; i < circle_points/2; i++) {
 	glVertex2f(.5, -1.5);
 	glEnd();
 
+	//MOON
+	//Circle 1 -> Black
+	//glTranslatef is used to position the circle
+	glTranslatef(2.0, 2.0, 0);
+	//glScalef - size of the circle
+	glScalef(0.3, 0.3, 0);
+
+
+	glBegin(GL_TRIANGLE_FAN);
+	glColor3ub(249, 215, 28);
+	for (int i = 0; i <= 500; i++) {
+		double angle = 2 * PI * i / 500;
+		double x = cos(angle);
+		double y = sin(angle);
+		glVertex2d(x, y);
+	}
+	glEnd();
+
+	//Circle 2 -> white
+	glTranslatef(0.5, 0.5, 0);
+	glBegin(GL_TRIANGLE_FAN);
+	glColor3ub(255, 255, 255);
+
+	for (int i = 0; i <= 500; i++) {
+		double angle = 2 * PI * i / 500;
+		double x = cos(angle);
+		double y = sin(angle);
+		glVertex2d(x, y);
+	}
+
+	glEnd();
+
 
 
 	// Flush drawing command buffer to make drawing happen as soon as possible.
@@ -129,7 +161,7 @@ int main(int argc, char** argv) {
 	// Position window at (80,80)-(480,380) and give it a title.
 	glutInitWindowPosition(80, 80);
 	glutInitWindowSize(400, 400);
-	glutCreateWindow("A Simple Triangle");
+	glutCreateWindow("A HOUSE ");
 	// Tell GLUT that whenever the main window needs to be repainted that it
 	// should call the function display().
 	glutDisplayFunc(display);
